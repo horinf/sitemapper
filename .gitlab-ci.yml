@@ -28,7 +28,7 @@ pack:
     expire_in: 1h
     name: "horinf.sitemapper.$CI_PIPELINE_ID"
     paths:
-      - *.nupkg
+      - ./*.nupkg
   when: manual
   only:
     - master
@@ -41,7 +41,7 @@ pack:
     expire_in: 1h
     name: "horinf.sitemapper.$CI_PIPELINE_ID"
     paths:
-      - *.nupkg
+      - ./*.nupkg
   when: manual
   only:
     - /^Alpha.*$/
