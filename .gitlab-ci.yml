@@ -1,0 +1,25 @@
+variables:
+  configuration: Release
+  version: 0.1.0
+
+stages:
+  - build
+  - pack
+
+build:
+  stage: build
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
+  script:
+    - dotnet publish horinf.sitemapper -c $configuration /p:Version=$version.$CI_PIPELINE_IID -o horinf.sitemapper/bin/$configuration/publish
+  artifacts:
+    expire_in: 1h
+    name: "horinf.sitemapper.$CI_PIPELINE_ID"
+    paths:
+      - horinf.sitemapper/bin/$configuration/publish
+  when: manual
+
+pack:
+  stage: pack
+  script:
+    # do something
+  when: manual
