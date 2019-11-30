@@ -21,6 +21,7 @@ build:
 
 pack:
   stage: pack
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
     - dotnet pack /p:Version=$version
   artifacts:
@@ -34,6 +35,7 @@ pack:
 
 pack:
   stage: pack
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
     - dotnet pack /p:Version=$version-alpha.$CI_PIPELINE_IID
   artifacts:
@@ -48,6 +50,7 @@ pack:
 
 publish_master:
   stage: publish
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
     - dotnet nuget push horinf.sitemapper.$version.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
   when: manual
@@ -56,6 +59,7 @@ publish_master:
   
 publish_master:
   stage: publish
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
     - dotnet nuget push horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
   when: manual
