@@ -21,5 +21,6 @@ build:
 pack:
   stage: pack
   script:
+    - echo do somethig
     # do something
   when: manual
