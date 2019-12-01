@@ -23,12 +23,12 @@ pack:
   stage: pack
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet pack /p:Version=$version
+    - dotnet pack -c $configuration /p:Version=$version
   artifacts:
     expire_in: 1h
     name: "horinf.sitemapper.$CI_PIPELINE_ID"
     paths:
-      - /**/*.nupkg
+      - horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version.nupkg
   when: manual
   only:
     - master
@@ -37,12 +37,12 @@ pack:
   stage: pack
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet pack /p:Version=$version-alpha.$CI_PIPELINE_IID
+    - dotnet pack -c $configuration /p:Version=$version-alpha.$CI_PIPELINE_IID
   artifacts:
     expire_in: 1h
-    name: "horinf.sitemapper.$CI_PIPELINE_ID"
+    name: "horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID"
     paths:
-      - /**/*.nupkg
+      - horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg
   when: manual
   only:
     - /^Alpha.*$/
@@ -52,7 +52,7 @@ publish_master:
   stage: publish
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet nuget push horinf.sitemapper.$version.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
+    - dotnet nuget push horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
   when: manual
   only:
     - master
@@ -61,7 +61,7 @@ publish_master:
   stage: publish
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet nuget push horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
+    - dotnet nuget push horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
   when: manual
   only:
     - /^Alpha.*$/
