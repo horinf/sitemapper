@@ -28,8 +28,7 @@ pack:
     expire_in: 1h
     name: "horinf.sitemapper.$CI_PIPELINE_ID"
     paths:
-      - horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version.nupkg
-  when: manual
+      - horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version.nupkg
   only:
     - master
 
@@ -42,8 +41,7 @@ pack:
     expire_in: 1h
     name: "horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID"
     paths:
-      - horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg
-  when: manual
+      - horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg
   only:
     - /^Alpha.*$/
 
