@@ -17,6 +17,9 @@ build:
     name: "horinf.sitemapper.$CI_PIPELINE_ID"
     paths:
       - horinf.sitemapper/bin/$configuration/publish
+   except:
+    - master
+    - /^Alpha.*$/
 
 
 pack_master:
