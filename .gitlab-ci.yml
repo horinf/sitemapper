@@ -19,8 +19,7 @@ build:
       - horinf.sitemapper/bin/$configuration/publish
   except:
     - master
-    - /^Alpha.*$/
-
+    - alpha
 
 pack_master:
   stage: pack
@@ -46,8 +45,7 @@ pack_alpha:
     paths:
       - horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg
   only:
-    - /^Alpha.*$/
-
+    - alpha
 
 publish_master:
   stage: publish
@@ -65,6 +63,4 @@ publish_alpha:
     - dotnet nuget push horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg --source https://api.nuget.org/v3/index.json --api-key $nugetpush
   when: manual
   only:
-    - /^Alpha.*$/
-
-  
+    - alpha
