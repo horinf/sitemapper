@@ -19,7 +19,7 @@ build:
       - horinf.sitemapper/bin/$configuration/publish
 
 
-pack:
+pack_master:
   stage: pack
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
@@ -32,7 +32,7 @@ pack:
   only:
     - master
 
-pack:
+pack_alpha:
   stage: pack
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
@@ -55,7 +55,7 @@ publish_master:
   only:
     - master
   
-publish_master:
+publish_alpha:
   stage: publish
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
