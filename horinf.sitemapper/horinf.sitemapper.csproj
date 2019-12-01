@@ -5,8 +5,13 @@
     <PackageId>horinf.sitemapper</PackageId>
     <Version>1.0.0</Version>
     <Authors>ToitskyMA, horinf</Authors>
-    <Authors>horinf</Authors>
+    <Company>horinf</Company>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>ToitskyMA, horinf</Copyright>
+    <PackageTags>sitemap</PackageTags>
+    <RepositoryUrl>https://github.com/horinf/sitemapper</RepositoryUrl>
+    <Description>Helper to create a sitemap from data</Description>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>
