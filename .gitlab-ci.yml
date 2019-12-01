@@ -50,7 +50,7 @@ publish_master:
   stage: publish
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet nuget push horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
+    - dotnet nuget push horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
   when: manual
   only:
     - master
@@ -59,7 +59,7 @@ publish_master:
   stage: publish
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet nuget push horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
+    - dotnet nuget push horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
   when: manual
   only:
     - /^Alpha.*$/
