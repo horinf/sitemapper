@@ -1,6 +1,6 @@
 variables:
   configuration: Release
-  version: 1.0.0
+  version: 1.1.0
 
 stages:
   - build
@@ -18,49 +18,52 @@ build:
     paths:
       - horinf.sitemapper/bin/$configuration/publish
 
-pack:
-  stage: pack
-  image: mcr.microsoft.com/dotnet/core/sdk:3.0
-  script:
-    - dotnet pack -c $configuration /p:Version=$version-alpha.$CI_PIPELINE_IID
-  artifacts:
-    expire_in: 1h
-    name: "horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID"
-    paths:
-      - horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg
-  when: manual
-  only:
-    - /^Alpha.*$/
 
 pack:
   stage: pack
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet pack -c $configuration /p:Version=$version
+    - dotnet pack /p:Version=$version
   artifacts:
     expire_in: 1h
     name: "horinf.sitemapper.$CI_PIPELINE_ID"
     paths:
-      - horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version.nupkg
+      - /**/*.nupkg
   when: manual
   only:
     - master
+
+pack:
+  stage: pack
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
+  script:
+    - dotnet pack /p:Version=$version-alpha.$CI_PIPELINE_IID
+  artifacts:
+    expire_in: 1h
+    name: "horinf.sitemapper.$CI_PIPELINE_ID"
+    paths:
+      - /**/*.nupkg
+  when: manual
+  only:
+    - /^Alpha.*$/
+
 
 publish_master:
   stage: publish
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet nuget push horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
+    - dotnet nuget push horinf.sitemapper.$version.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
   when: manual
   only:
-    - /^Alpha.*$/
+    - master
   
 publish_master:
   stage: publish
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet nuget push horinf.sitemapper/bin/$configuration/publish/horinf.sitemapper.$version.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
+    - dotnet nuget push horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg -k $nugetpush -s https://api.nuget.org/v3/index.json
   when: manual
   only:
-    - master
+    - /^Alpha.*$/
+
   
