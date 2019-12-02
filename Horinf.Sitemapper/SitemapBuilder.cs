@@ -6,14 +6,14 @@ using System.Text;
 
 namespace Horinf.Sitemapper
 {
-    public class SitemapDocumentBuilder
+    public class SitemapBuilder
     {
         private readonly ConcurrentBag<SitemapNode> _nodes;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public SitemapDocumentBuilder()
+        public SitemapBuilder()
         {
             _nodes = new ConcurrentBag<SitemapNode>();
         }
@@ -21,7 +21,7 @@ namespace Horinf.Sitemapper
         /// <summary>
         /// Easy way to add node.
         /// </summary>
-        public SitemapDocumentBuilder AddNode(string location)
+        public SitemapBuilder AddNode(string location)
         {
             _nodes.Add(new SitemapNode(location));
             return this;
@@ -30,7 +30,7 @@ namespace Horinf.Sitemapper
         /// <summary>
         /// Add node.
         /// </summary>
-        public SitemapDocumentBuilder AddNode(SitemapNode node)
+        public SitemapBuilder AddNode(SitemapNode node)
         {
             _nodes.Add(node);
             return this;
