@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>horinf.sitemapper</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>ToitskyMA, horinf</Authors>
     <Company>horinf</Company>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
