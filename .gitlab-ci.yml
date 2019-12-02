@@ -1,10 +1,11 @@
 variables:
   configuration: Release
-  version: 0.1.0
+  version: 1.1.0
 
 stages:
   - build
   - pack
+  - publish
 
 build:
   stage: build
@@ -16,11 +17,50 @@ build:
     name: "horinf.sitemapper.$CI_PIPELINE_ID"
     paths:
       - horinf.sitemapper/bin/$configuration/publish
-  when: manual
+  except:
+    - master
+    - alpha
 
-pack:
+pack_master:
   stage: pack
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - echo do somethig
-    # do something
+    - dotnet pack -c $configuration /p:Version=$version
+  artifacts:
+    expire_in: 1h
+    name: "horinf.sitemapper.$CI_PIPELINE_ID"
+    paths:
+      - horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version.nupkg
+  only:
+    - master
+
+pack_alpha:
+  stage: pack
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
+  script:
+    - dotnet pack -c $configuration /p:Version=$version-alpha.$CI_PIPELINE_IID
+  artifacts:
+    expire_in: 1h
+    name: "horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID"
+    paths:
+      - horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg
+  only:
+    - alpha
+
+publish_master:
+  stage: publish
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
+  script:
+    - dotnet nuget push horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version.nupkg --source https://api.nuget.org/v3/index.json --api-key $nugetpush
   when: manual
+  only:
+    - master
+  
+publish_alpha:
+  stage: publish
+  image: mcr.microsoft.com/dotnet/core/sdk:3.0
+  script:
+    - dotnet nuget push horinf.sitemapper/bin/$configuration/horinf.sitemapper.$version-alpha.$CI_PIPELINE_IID.nupkg --source https://api.nuget.org/v3/index.json --api-key $nugetpush
+  when: manual
+  only:
+    - alpha
