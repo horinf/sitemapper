@@ -52,7 +52,7 @@ namespace Horinf.Sitemapper
 
                 if (sitemapNode.LastModificationDate != null)
                 {
-                    var dt = (DateTime) sitemapNode.LastModificationDate;
+                    var dt = (DateTime)sitemapNode.LastModificationDate;
                     var sb = new StringBuilder();
                     sb.Append(dt.Year);
                     sb.Append("-");
@@ -64,7 +64,7 @@ namespace Horinf.Sitemapper
 
                 if (sitemapNode.ChangeFrequency != null)
                 {
-                    urlElement.Add(new XElement(xmlns + "changefreq", (ChangefreqEnum) sitemapNode.ChangeFrequency));
+                    urlElement.Add(new XElement(xmlns + "changefreq", (ChangefreqEnum)sitemapNode.ChangeFrequency));
                 }
 
                 if (sitemapNode.Priority != null)
@@ -79,7 +79,7 @@ namespace Horinf.Sitemapper
                         sitemapNode.Priority = 0;
                     }
 
-                    urlElement.Add(new XElement(xmlns + "priority", Math.Round((decimal) sitemapNode.Priority, 1)));
+                    urlElement.Add(new XElement(xmlns + "priority", Math.Round((decimal)sitemapNode.Priority, 1)));
                 }
 
                 root.Add(urlElement);
