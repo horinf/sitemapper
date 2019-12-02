@@ -1,4 +1,4 @@
-﻿namespace horinf.sitemapper
+﻿namespace Horinf.Sitemapper
 {
     public enum ChangefreqEnum
     {
