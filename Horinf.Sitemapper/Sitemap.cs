@@ -39,6 +39,10 @@ namespace Horinf.Sitemapper
             return imgByteArr;
         }
 
+        /// <summary>
+        /// Convert xml documetn to string
+        /// </summary>
+        /// <returns></returns>
         public string ConvertToString()
         {
             using (var stringWriter = new StringWriter())
