@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Horinf.Sitemapper.Checker;
+using Horinf.Sitemapper.Interfaces;
 
 namespace Horinf.Sitemapper
 {
@@ -11,7 +11,7 @@ namespace Horinf.Sitemapper
         /// <summary>
         /// Check sitemap nodes using sitemap checker.
         /// </summary>
-        public static async Task Check(this SitemapBuilder sitemapBuilder, SitemapChecker checker)
+        public static async Task Check(this ISitemapBuilder sitemapBuilder, ISitemapChecker checker)
         {
             await checker.Check(sitemapBuilder.Nodes);
         }
