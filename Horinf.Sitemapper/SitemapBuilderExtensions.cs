@@ -13,7 +13,7 @@ namespace Horinf.Sitemapper
         /// </summary>
         public static async Task Check(this ISitemapBuilder sitemapBuilder, ISitemapChecker checker)
         {
-            await checker.Check(sitemapBuilder.Nodes);
+            await checker.Check(sitemapBuilder.Nodes).ConfigureAwait(false);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Horinf.Sitemapper.Checker
             {
                 try
                 {
-                    HttpResponseMessage response = await _httpClient.GetAsync(sitemapNode.Location);
+                    HttpResponseMessage response = await _httpClient.GetAsync(sitemapNode.Location).ConfigureAwait(false);
                     response.EnsureSuccessStatusCode();
                 }
                 catch (Exception ex)
