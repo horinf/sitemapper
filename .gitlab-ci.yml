@@ -11,7 +11,7 @@ build:
   stage: build
   image: mcr.microsoft.com/dotnet/core/sdk:3.0
   script:
-    - dotnet publish hHorinf.Sitemapper -c $configuration /p:Version=$version.$CI_PIPELINE_IID -o Horinf.Sitemapper/bin/$configuration/publish
+    - dotnet publish Horinf.Sitemapper/Horinf.Sitemapper.csproj -c $configuration /p:Version=$version.$CI_PIPELINE_IID -o Horinf.Sitemapper/bin/$configuration/publish
   artifacts:
     expire_in: 1h
     name: "horinf.sitemapper.$CI_PIPELINE_ID"
