@@ -2,6 +2,9 @@
 
 namespace Horinf.Sitemapper
 {
+    /// <summary>
+    /// Node in sitemap.
+    /// </summary>
     public class SitemapNode
     {
         /// <summary>

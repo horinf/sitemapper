@@ -19,6 +19,10 @@ namespace Horinf.Sitemapper
         /// </summary>
         public XDocument XDocument { get; }
 
+        /// <summary>
+        /// Implicitly convert to XDocument.
+        /// </summary>
+        /// <param name="sitemap"></param>
         public static implicit operator XDocument(Sitemap sitemap)
         {
             return sitemap.XDocument;
@@ -40,7 +44,7 @@ namespace Horinf.Sitemapper
         }
 
         /// <summary>
-        /// Convert xml documetn to string
+        /// Convert xml document to string
         /// </summary>
         /// <returns></returns>
         public string ConvertToString()
